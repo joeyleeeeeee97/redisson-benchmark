@@ -30,22 +30,22 @@ import jodd.util.RandomString;
  */
 public class BinaryBenchmark {
 
-    static final Object value = RandomString.getInstance().randomAlphaNumeric(1024*1024);
+    //static final Object value = RandomString.getInstance().randomAlphaNumeric(1024*1024);
 
     public static void main(String[] args) throws InterruptedException {
-        Bench<RedissonClient> bench = new RedissonBench() {
-            @Override
-            public void executeOperation(String data, RedissonClient benchInstance, int threadNumber, int iteration,
-                    MetricRegistry metrics) {
-                RBucket<Object> bucket = benchInstance.getBucket("bucket_" + threadNumber + "_" + iteration);
-                Timer.Context time = metrics.timer("bucket").time();
-                bucket.set(value);
-                time.stop();
-            }
-        };
-        
-        Benchmark benchmark = new Benchmark(bench);
-        benchmark.run(args);
+//        Bench<RedissonClient> bench = new RedissonBench() {
+//            @Override
+//            public void executeOperation(String data, RedissonClient benchInstance, int threadNumber, int iteration,
+//                    MetricRegistry metrics) {
+//                RBucket<Object> bucket = benchInstance.getBucket("bucket_" + threadNumber + "_" + iteration);
+//                Timer.Context time = metrics.timer("bucket").time();
+//                bucket.set(value);
+//                time.stop();
+//            }
+//        };
+//
+//        Benchmark benchmark = new Benchmark(bench);
+//        benchmark.run(args);
     }
 
 }

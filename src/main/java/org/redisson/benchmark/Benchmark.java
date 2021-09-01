@@ -35,6 +35,9 @@ import jodd.util.RandomString;
  */
 public class Benchmark {
 
+    private static final  String HOST = System.getProperty("host", "200.0.84.2");
+    private static final String PORT = System.getProperty("port", "5000");
+
     private final int[] threads = {1, 2, 4, 8, 16, 32, 64, 128, 256};
     private MetricRegistry metrics;
     private ConsoleReporter reporter;
@@ -50,7 +53,7 @@ public class Benchmark {
         int threads = 64;
         int iteration = 100000;
         int connections = 10;
-        String host = "redis://127.0.0.1:6379";
+        String host = "redis://" + HOST + ":" + PORT;
         if (args.length > 0) {
             threads = Integer.valueOf(args[0]); //64;
             iteration = Integer.valueOf(args[1]);//100;

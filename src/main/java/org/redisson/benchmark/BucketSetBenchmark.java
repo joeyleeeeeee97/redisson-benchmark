@@ -30,27 +30,27 @@ import com.codahale.metrics.Counter;
 public class BucketSetBenchmark {
 
     public static void main(String[] args) throws InterruptedException {
-        Bench<RedissonClient> bench = new RedissonBench() {
-            @Override
-            public void executeOperation(String data, RedissonClient benchInstance, int threadNumber, int iteration,
-                    MetricRegistry metrics) {
-                RBucket<String> bucket = benchInstance.getBucket("bucket_" + threadNumber + "_" + iteration);
-                Timer.Context time = metrics.timer("bucket", new com.codahale.metrics.MetricRegistry.MetricSupplier<Timer>() {
-                     public Timer newMetric() {
-                         return new Timer(new com.codahale.metrics.UniformReservoir(6400000));
-                     }
-                }).time();
-                try {
-                    bucket.set(data);
-                } catch (Exception e) {
-                    metrics.counter("bucket-failures").inc();
-                }
-                time.stop();
-            }
-        };
-        
-        Benchmark benchmark = new Benchmark(bench);
-        benchmark.run(args);
+//        Bench<RedissonClient> bench = new RedissonBench() {
+//            @Override
+//            public void executeOperation(String data, RedissonClient benchInstance, int threadNumber, int iteration,
+//                    MetricRegistry metrics) {
+//                RBucket<String> bucket = benchInstance.getBucket("bucket_" + threadNumber + "_" + iteration);
+//                Timer.Context time = metrics.timer("bucket", new com.codahale.metrics.MetricRegistry.MetricSupplier<Timer>() {
+//                     public Timer newMetric() {
+//                         return new Timer(new com.codahale.metrics.UniformReservoir(6400000));
+//                     }
+//                }).time();
+//                try {
+//                    bucket.set(data);
+//                } catch (Exception e) {
+//                    metrics.counter("bucket-failures").inc();
+//                }
+//                time.stop();
+//            }
+//        };
+//
+//        Benchmark benchmark = new Benchmark(bench);
+//        benchmark.run(args);
     }
     
 }
